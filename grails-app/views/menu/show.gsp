@@ -31,6 +31,39 @@
                             
                         </tr>
                     
+		<tr class="prop">
+			<td valign="top" class="name"><g:message
+				code="menu.backGroundPicture.label"
+				default="Back Ground Picture" /></td>
+			<g:form controller="image" method="post" action="savePicture"
+				enctype="multipart/form-data">
+
+				<g:hiddenField name="id" value="${menuInstance?.id}" />
+				<g:hiddenField name="backGroundPicture"
+					value="${menuInstance?.backGroundPicture}" />
+				<td><img class="Photo"
+					src="${createLink(action:'getImage')}?backGroundPicture=${menuInstance?.backGroundPicture}" />
+				</td>
+		</tr>
+		<tr>
+			<td><td/>
+			<g:hiddenField name="type" value="menu" />
+			<g:hiddenField name="superId" value="${menuInstance?.mainMenu.id}" />
+			<input type="file" name="file" />
+			<input type="submit"
+				value="${message(code: 'default.button.change.picture', default: 'change picture')}" />
+			</td>
+			</g:form>
+		</tr>
+
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="menu.backGroundPictureType.label" default="Back Ground Picture Type" /></td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean: menuInstance, field: "backGroundPictureType")}</td>
+                            
+                        </tr>
+                    
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="menu.mainMenu.label" default="Main Menu" /></td>
                             
@@ -49,13 +82,6 @@
                             <td valign="top" class="name"><g:message code="menu.backGroundColor.label" default="Back Ground Color" /></td>
                             
                             <td valign="top" class="value">${fieldValue(bean: menuInstance, field: "backGroundColor")}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="menu.backGroundPicture.label" default="Back Ground Picture" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: menuInstance, field: "backGroundPicture")}</td>
                             
                         </tr>
                     

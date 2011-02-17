@@ -9,6 +9,10 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
+        <div class="nav">
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
+            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
+        </div>
         <div class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -41,22 +45,28 @@
                                     <g:select name="position" from="${panelInstance.constraints.position.inList}" value="${panelInstance?.position}" valueMessagePrefix="panel.position"  />
                                 </td>
                             </tr>
+<!--
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPicture"><g:message code="panel.backGroundPicture.label" default="Back Ground Picture" /></label>
+                                </td>
+                            </tr>
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPictureType"><g:message code="panel.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: panelInstance, field: 'backGroundPictureType', 'errors')}">
+                                    <g:textField name="backGroundPictureType" value="${panelInstance?.backGroundPictureType}" />
+                                </td>
+                            </tr>
+                            -->
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="layouts"><g:message code="panel.layouts.label" default="Layouts" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: panelInstance, field: 'layouts', 'errors')}">
                                     <g:select name="layouts.id" from="${menu.manager.Layouts.list()}" optionKey="id" value="${panelInstance?.layouts?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="backGroundPic"><g:message code="panel.backGroundPic.label" default="Back Ground Pic" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: panelInstance, field: 'backGroundPic', 'errors')}">
-                                    <g:textField name="backGroundPic" value="${panelInstance?.backGroundPic}" />
                                 </td>
                             </tr>
                         

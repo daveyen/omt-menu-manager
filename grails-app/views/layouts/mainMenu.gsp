@@ -2,8 +2,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'layouts.label', default: 'Layouts')}" />
-        <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <g:set var="entityName" value="${message(code: 'mainMenu.label', default: 'Main Menu')}" />
+        <title><g:message code="Main Menu" /></title>
     </head>
 
 

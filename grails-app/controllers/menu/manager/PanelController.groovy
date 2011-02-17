@@ -4,12 +4,25 @@ class PanelController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-	def panel = {
-		
-	}
     def index = {
         redirect(action: "list", params: params)
     }
+	
+	def getImage = {
+		redirect(controller: 'image' ,action:'getImage', params:['backGroundPicture':params.backGroundPicture])
+	}
+
+	def uploadPicture = {
+		def panelInstance = Panel.get(params.id)
+		if (!panelInstance) {
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'mainMenu.label', default: 'Item'), params.id])}"
+			redirect(action: "list")
+		}
+		else {
+			[panelInstance: panelInstance]
+		}
+	}
+
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
@@ -26,7 +39,7 @@ class PanelController {
         def panelInstance = new Panel(params)
         if (panelInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'panel.label', default: 'Panel'), panelInstance.id])}"
-            redirect(action: "show", id: panelInstance.id)
+            redirect(action: "uploadPicture", id: panelInstance.id)
         }
         else {
             render(view: "create", model: [panelInstance: panelInstance])

@@ -37,6 +37,27 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                  <label for="backGroundPicture"><g:message code="subMenu.backGroundPicture.label" default="Back Ground Picture" /></label>
+                                </td>
+                                <td><img class="Photo" src="${createLink(action:'getImage')}?backGroundPicture=${subMenuInstance?.backGroundPicture}" />
+							<span class="button"><g:actionSubmit class="save" action="uploadPicture"
+							value="${message(code: 'default.button.change.picture', default: 'change picture')}" /></span></td>
+                            </tr>
+
+
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="backGroundPictureType"><g:message code="subMenu.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundPictureType', 'errors')}">
+                                    <g:textField name="backGroundPictureType" value="${subMenuInstance?.backGroundPictureType}" />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                   <label for="menu"><g:message code="subMenu.menu.label" default="Menu" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'menu', 'errors')}">
@@ -50,15 +71,6 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundColor', 'errors')}">
                                     <g:textField name="backGroundColor" value="${subMenuInstance?.backGroundColor}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="backGroundPicture"><g:message code="subMenu.backGroundPicture.label" default="Back Ground Picture" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundPicture', 'errors')}">
-                                    <g:textField name="backGroundPicture" value="${subMenuInstance?.backGroundPicture}" />
                                 </td>
                             </tr>
                         

@@ -50,6 +50,34 @@
                                     <g:textField name="description" value="${mainMenuInstance?.description}" />
                                 </td>
                             </tr>
+ <!--
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPicture"><g:message code="mainMenu.backGroundPicture.label" default="Back Ground Picture" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'backGroundPicture', 'errors')}">
+                                    <g:textField name="backGroundPicture" value="${mainMenuInstance?.backGroundPicture}" />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPictureType"><g:message code="mainMenu.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'backGroundPictureType', 'errors')}">
+                                    <g:select name="backGroundPictureType" from="${mainMenuInstance.constraints.backGroundPictureType.inList}" value="${mainMenuInstance?.backGroundPictureType}" valueMessagePrefix="mainMenu.backGroundPictureType" noSelection="['': '']" />
+                                </td>
+                            </tr>
+                        
+                            -->
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="layouts"><g:message code="mainMenu.layouts.label" default="Layouts" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'layouts', 'errors')}">
+                                    <g:select name="layouts.id" from="${menu.manager.Layouts.list()}" optionKey="id" value="${mainMenuInstance?.layouts?.id}"  />
+                                </td>
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -57,15 +85,6 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'backGroundColor', 'errors')}">
                                     <g:textField name="backGroundColor" value="${mainMenuInstance?.backGroundColor}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="backGroundPic"><g:message code="mainMenu.backGroundPic.label" default="Back Ground Pic" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'backGroundPic', 'errors')}">
-                                    <g:textField name="backGroundPic" value="${mainMenuInstance?.backGroundPic}" />
                                 </td>
                             </tr>
                         
@@ -84,15 +103,6 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'fontColor', 'errors')}">
                                     <g:textField name="fontColor" value="${mainMenuInstance?.fontColor}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="layouts"><g:message code="mainMenu.layouts.label" default="Layouts" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'layouts', 'errors')}">
-                                    <g:select name="layouts.id" from="${menu.manager.Layouts.list()}" optionKey="id" value="${mainMenuInstance?.layouts?.id}"  />
                                 </td>
                             </tr>
                         

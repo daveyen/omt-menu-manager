@@ -1,4 +1,12 @@
-<resource:flow />
+
+
+<g:form controller="yourControllerName" method="post" action="test" 
+  enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <input type="submit"/>
+</g:form>
+
+<!--<resource:flow />
 ...
 
 <richui:flow reflection="true" slider="true" onClickScroll="true">
@@ -8,7 +16,7 @@
 </richui:flow>
 
 
-<!--
+
 <resource:carousel />
 ...
 

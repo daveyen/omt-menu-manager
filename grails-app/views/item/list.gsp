@@ -24,14 +24,11 @@
                         
                             <g:sortableColumn property="type" title="${message(code: 'item.type.label', default: 'Type')}" />
                         
-                            <th><g:message code="item.subMenu.label" default="Sub Menu" /></th>
-                        
-                            <g:sortableColumn property="backGroundColor" title="${message(code: 'item.backGroundColor.label', default: 'Back Ground Color')}" />
-                        
                             <g:sortableColumn property="backGroundPicture" title="${message(code: 'item.backGroundPicture.label', default: 'Back Ground Picture')}" />
-                            <g:sortableColumn property="title" title="${message(code: 'item.title.label', default: 'Title')}" />
-                            <g:sortableColumn property="price" title="${message(code: 'item.price.label', default: 'Price')}" />
-                    
+                        
+                            <g:sortableColumn property="backGroundPictureType" title="${message(code: 'item.backGroundPictureType.label', default: 'Back Ground Picture Type')}" />
+                        
+                            <th><g:message code="item.subMenu.label" default="Sub Menu" /></th>
                         
                         </tr>
                     </thead>
@@ -45,15 +42,11 @@
                         
                             <td>${fieldValue(bean: itemInstance, field: "type")}</td>
                         
-                            <td>${fieldValue(bean: itemInstance, field: "subMenu")}</td>
-                        
-                            <td>${fieldValue(bean: itemInstance, field: "backGroundColor")}</td>
-                        
                             <td>${fieldValue(bean: itemInstance, field: "backGroundPicture")}</td>
-                            
-                            <td>${fieldValue(bean: itemInstance, field: "title")}</td>
-                            
-                            <td>${fieldValue(bean: itemInstance, field: "price")}</td>
+                        
+                            <td>${fieldValue(bean: itemInstance, field: "backGroundPictureType")}</td>
+                        
+                            <td>${fieldValue(bean: itemInstance, field: "subMenu")}</td>
                         
                         </tr>
                     </g:each>

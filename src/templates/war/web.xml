@@ -69,7 +69,20 @@
         <servlet-name>gsp</servlet-name>
         <url-pattern>*.gsp</url-pattern>
     </servlet-mapping>
+    <!--
 
+    <servlet>
+        <servlet-name>imageServlet</servlet-name>
+        <servlet-class>menu.manager.servlets.ImageDisplayServlet</servlet-class>
+    </servlet>
+    
+    	<servlet-mapping>
+		<servlet-name>imageServlet</servlet-name>
+		<url-pattern>/image/getImage</url-pattern>
+	</servlet-mapping>
+    
+
+    -->
     <welcome-file-list>
         <!--
         The order of the welcome pages is important.  JBoss deployment will

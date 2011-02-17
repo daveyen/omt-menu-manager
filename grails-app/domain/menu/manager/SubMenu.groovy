@@ -9,9 +9,12 @@ class SubMenu {
 	String fontColor
 	String backGroundColor
 	String backGroundPicture
+	String backGroundPictureType
 
     static constraints = {
 		name(nullable:false,blank:false)
+		backGroundPicture(nullable:true, maxSize: 102400 /* 16K */)
+		backGroundPictureType(nullable:true)
 		menu()
     }
 	

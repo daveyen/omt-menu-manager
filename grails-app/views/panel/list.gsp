@@ -24,11 +24,11 @@
                         
                             <g:sortableColumn property="position" title="${message(code: 'panel.position.label', default: 'Position')}" />
                         
+                            <g:sortableColumn property="backGroundPicture" title="${message(code: 'panel.backGroundPicture.label', default: 'Back Ground Picture')}" />
+                        
+                            <g:sortableColumn property="backGroundPictureType" title="${message(code: 'panel.backGroundPictureType.label', default: 'Back Ground Picture Type')}" />
+                        
                             <th><g:message code="panel.layouts.label" default="Layouts" /></th>
-                        
-                            <g:sortableColumn property="backGroundPic" title="${message(code: 'panel.backGroundPic.label', default: 'Back Ground Pic')}" />
-                        
-                            <g:sortableColumn property="backgroundColor" title="${message(code: 'panel.backgroundColor.label', default: 'Background Color')}" />
                         
                         </tr>
                     </thead>
@@ -42,11 +42,11 @@
                         
                             <td>${fieldValue(bean: panelInstance, field: "position")}</td>
                         
+                            <td>${fieldValue(bean: panelInstance, field: "backGroundPicture")}</td>
+                        
+                            <td>${fieldValue(bean: panelInstance, field: "backGroundPictureType")}</td>
+                        
                             <td>${fieldValue(bean: panelInstance, field: "layouts")}</td>
-                        
-                            <td>${fieldValue(bean: panelInstance, field: "backGroundPic")}</td>
-                        
-                            <td>${fieldValue(bean: panelInstance, field: "backgroundColor")}</td>
                         
                         </tr>
                     </g:each>

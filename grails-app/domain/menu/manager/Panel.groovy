@@ -6,12 +6,16 @@ class Panel {
 	String position
 	String font
 	String backgroundColor
-	String backGroundPic
+	String backGroundPicture
+	String backGroundPictureType
 	String panelSize
 
 	static constraints = {
 		name(blank:false, nullable:false, unique:true)
 		position(inList:["left", "right","top","bottom","center"])
+		backGroundPicture(nullable:true, maxSize: 102400 /* 16K */)
+		backGroundPictureType(nullable:true)
+		
 		layouts()
 		
 	}

@@ -22,13 +22,13 @@
                         
                             <g:sortableColumn property="name" title="${message(code: 'menu.name.label', default: 'Name')}" />
                         
+                            <g:sortableColumn property="backGroundPicture" title="${message(code: 'menu.backGroundPicture.label', default: 'Back Ground Picture')}" />
+                        
+                            <g:sortableColumn property="backGroundPictureType" title="${message(code: 'menu.backGroundPictureType.label', default: 'Back Ground Picture Type')}" />
+                        
                             <th><g:message code="menu.mainMenu.label" default="Main Menu" /></th>
                         
                             <th><g:message code="menu.panel.label" default="Panel" /></th>
-                        
-                            <g:sortableColumn property="backGroundColor" title="${message(code: 'menu.backGroundColor.label', default: 'Back Ground Color')}" />
-                        
-                            <g:sortableColumn property="backGroundPicture" title="${message(code: 'menu.backGroundPicture.label', default: 'Back Ground Picture')}" />
                         
                         </tr>
                     </thead>
@@ -40,13 +40,13 @@
                         
                             <td>${fieldValue(bean: menuInstance, field: "name")}</td>
                         
+                            <td>${fieldValue(bean: menuInstance, field: "backGroundPicture")}</td>
+                        
+                            <td>${fieldValue(bean: menuInstance, field: "backGroundPictureType")}</td>
+                        
                             <td>${fieldValue(bean: menuInstance, field: "mainMenu")}</td>
                         
                             <td>${fieldValue(bean: menuInstance, field: "panel")}</td>
-                        
-                            <td>${fieldValue(bean: menuInstance, field: "backGroundColor")}</td>
-                        
-                            <td>${fieldValue(bean: menuInstance, field: "backGroundPicture")}</td>
                         
                         </tr>
                     </g:each>

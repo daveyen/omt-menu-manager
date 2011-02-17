@@ -1,5 +1,10 @@
 package menu.manager
 
+import java.util.ArrayList
+
+
+import org.codehaus.groovy.grails.web.json.JSONObject;
+
 class AdminController {
 
 
@@ -7,14 +12,71 @@ class AdminController {
 
 	def login = {
 		if(isLoggedIn()) {
+			println("logged in")
 			redirect(action:"home")
 		}
 	}
 
-
 	def home = {
 
 	}
+
+	def getSettings = {
+
+		Layouts layouts = Layouts.findAllByAdmin(session.admin)[0]
+		Panel[] panels = Panel.findAllByLayouts(layouts)
+		MainMenu[] mainMenu = MainMenu.findAllByLayouts(layouts)
+		Menu[] menus = getMenus(panels)
+		SubMenu[] subMenus = getSubMenus(menus)
+		Item[] items = getItems(subMenus)
+
+		JSONObject responseObject = new JSONObject()
+
+		responseObject.put "layouts",layouts
+		responseObject.put "panels", panels
+		responseObject.put "mainMenus", mainMenu
+		responseObject.put "menus", menus
+		responseObject.put "subMenus", subMenus
+		responseObject.put "item", items
+
+		render responseObject.toString()
+
+
+	}
+
+	ArrayList<Menu> getMenus(Panel[] panels) {
+		ArrayList<Menu> menus = new ArrayList<Menu>();
+		for(int i=0; i < panels.length; i++) {
+			Menu[] menu = Menu.findAllByPanel(panels[i])
+
+			menus.addAll menu
+		}
+
+		return menus
+	}
+
+	ArrayList<SubMenu> getSubMenus(Menu[] menus) {
+
+		ArrayList<SubMenu> subMenus = new ArrayList<SubMenu>()
+		for(int i=0; i < menus.length; i++) {
+
+			SubMenu[] subMenu = SubMenu.findAllByMenu(menus[i])
+
+			subMenus.addAll subMenu
+		}
+		return subMenus
+	}
+
+	ArrayList<Item> getItems(SubMenu[] subMenus) {
+		ArrayList<Item> items = new ArrayList<Item>();
+		for(int i=0; i < subMenus.length; i++) {
+			Item[] item = Item.findAllBySubMenu(subMenus[i])
+
+			items.addAll item
+		}
+		return items
+	}
+
 
 	def createUser = {
 		def userInstance = new User()
@@ -113,7 +175,7 @@ class AdminController {
 		if(admin){
 			session.admin = admin
 			flash.message = "Hello ${admin.login}!"
-			redirect(controller:"admin", action:"list")
+			redirect(controller:"admin", action:"home")
 		}else{
 			flash.message =
 					"Sorry, ${params.login}. Please try again."

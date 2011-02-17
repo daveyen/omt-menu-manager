@@ -7,11 +7,23 @@ class MenuController {
     def index = {
         redirect(action: "list", params: params)
     }
-
-	def subMenu = {
-		
-	}
 	
+	def getImage = {
+		redirect(controller: 'image' ,action:'getImage', params:['backGroundPicture':params.backGroundPicture])
+	}
+
+	def uploadPicture = {
+		def menuInstance = Menu.get(params.id)
+		if (!menuInstance) {
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'menu', default: 'Item'), params.id])}"
+			redirect(action: "list")
+		}
+		else {
+			[menuInstance: menuInstance]
+		}
+	}
+
+	def subMenu = {}
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [menuInstanceList: Menu.list(params), menuInstanceTotal: Menu.count()]
@@ -27,7 +39,7 @@ class MenuController {
         def menuInstance = new Menu(params)
         if (menuInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'menu.label', default: 'Menu'), menuInstance.id])}"
-            redirect(action: "show", id: menuInstance.id)
+            redirect(action: "uploadPicture", id: menuInstance.id)
         }
         else {
             render(view: "create", model: [menuInstance: menuInstance])

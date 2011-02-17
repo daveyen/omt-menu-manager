@@ -9,6 +9,10 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
+        <div class="nav">
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
+            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
+        </div>
         <div class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -33,7 +37,25 @@
                                 </td>
                             </tr>
                         
+                            <!--<tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPicture"><g:message code="subMenu.backGroundPicture.label" default="Back Ground Picture" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundPicture', 'errors')}">
+                                    <g:textArea name="backGroundPicture" cols="40" rows="5" value="${subMenuInstance?.backGroundPicture}" />
+                                </td>
+                            </tr>
+                        
                             <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPictureType"><g:message code="subMenu.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundPictureType', 'errors')}">
+                                    <g:textField name="backGroundPictureType" value="${subMenuInstance?.backGroundPictureType}" />
+                                </td>
+                            </tr>
+                        
+                            --><tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="menu"><g:message code="subMenu.menu.label" default="Menu" /></label>
                                 </td>
@@ -48,15 +70,6 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundColor', 'errors')}">
                                     <g:textField name="backGroundColor" value="${subMenuInstance?.backGroundColor}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="backGroundPicture"><g:message code="subMenu.backGroundPicture.label" default="Back Ground Picture" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundPicture', 'errors')}">
-                                    <g:textField name="backGroundPicture" value="${subMenuInstance?.backGroundPicture}" />
                                 </td>
                             </tr>
                         

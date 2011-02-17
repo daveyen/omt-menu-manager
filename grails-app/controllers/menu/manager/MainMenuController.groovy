@@ -7,10 +7,26 @@ class MainMenuController {
     def index = {
         redirect(action: "list", params: params)
     }
+	
+	def getImage = {
+		redirect(controller: 'image' ,action:'getImage', params:['backGroundPicture':params.backGroundPicture])
+	}
+
+	def uploadPicture = {
+		def mainMenuInstance = MainMenu.get(params.id)
+		if (!mainMenuInstance) {
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'mainMenu.label', default: 'Item'), params.id])}"
+			redirect(action: "list")
+		}
+		else {
+			[mainMenuInstance: mainMenuInstance]
+		}
+	}
 
 	def menu = {
 		
 	}
+
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [mainMenuInstanceList: MainMenu.list(params), mainMenuInstanceTotal: MainMenu.count()]
@@ -26,7 +42,7 @@ class MainMenuController {
         def mainMenuInstance = new MainMenu(params)
         if (mainMenuInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'mainMenu.label', default: 'MainMenu'), mainMenuInstance.id])}"
-            redirect(action: "show", id: mainMenuInstance.id)
+            redirect(action: "uploadPicture", id: mainMenuInstance.id)
         }
         else {
             render(view: "create", model: [mainMenuInstance: mainMenuInstance])

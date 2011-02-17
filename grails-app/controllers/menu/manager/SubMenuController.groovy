@@ -8,10 +8,23 @@ class SubMenuController {
         redirect(action: "list", params: params)
     }
 
+	def getImage = {
+		redirect(controller: 'image' ,action:'getImage', params:['backGroundPicture':params.backGroundPicture])
+	}
+
+	def uploadPicture = {
+		def subMenuInstance = SubMenu.get(params.id)
+		if (!subMenuInstance) {
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'subMenu', default: 'Item'), params.id])}"
+			redirect(action: "list")
+		}
+		else {
+			[subMenuInstance: subMenuInstance]
+		}
+	}
 	def item = {
 		
 	}
-	
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [subMenuInstanceList: SubMenu.list(params), subMenuInstanceTotal: SubMenu.count()]
@@ -27,7 +40,7 @@ class SubMenuController {
         def subMenuInstance = new SubMenu(params)
         if (subMenuInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'subMenu.label', default: 'SubMenu'), subMenuInstance.id])}"
-            redirect(action: "show", id: subMenuInstance.id)
+            redirect(action: "uploadPicture", id: subMenuInstance.id)
         }
         else {
             render(view: "create", model: [subMenuInstance: subMenuInstance])

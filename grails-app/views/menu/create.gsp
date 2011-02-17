@@ -33,7 +33,25 @@
                                 </td>
                             </tr>
                         
+                            <!--<tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPicture"><g:message code="menu.backGroundPicture.label" default="Back Ground Picture" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: menuInstance, field: 'backGroundPicture', 'errors')}">
+                                    <g:textArea name="backGroundPicture" cols="40" rows="5" value="${menuInstance?.backGroundPicture}" />
+                                </td>
+                            </tr>
+                        
                             <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="backGroundPictureType"><g:message code="menu.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: menuInstance, field: 'backGroundPictureType', 'errors')}">
+                                    <g:select name="backGroundPictureType" from="${menuInstance.constraints.backGroundPictureType.inList}" value="${menuInstance?.backGroundPictureType}" valueMessagePrefix="menu.backGroundPictureType" noSelection="['': '']" />
+                                </td>
+                            </tr>
+                        
+                            --><tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="mainMenu"><g:message code="menu.mainMenu.label" default="Main Menu" /></label>
                                 </td>
@@ -57,15 +75,6 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: menuInstance, field: 'backGroundColor', 'errors')}">
                                     <g:textField name="backGroundColor" value="${menuInstance?.backGroundColor}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="backGroundPicture"><g:message code="menu.backGroundPicture.label" default="Back Ground Picture" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: menuInstance, field: 'backGroundPicture', 'errors')}">
-                                    <g:textField name="backGroundPicture" value="${menuInstance?.backGroundPicture}" />
                                 </td>
                             </tr>
                         

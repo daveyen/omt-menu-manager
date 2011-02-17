@@ -1,6 +1,6 @@
 <div id="header">
 <p><a class="header-main" href="${resource(dir:'')}"><img
-	src="${resource(dir:'images',file:'grails_logo.png')}"</a></p>
+	src="${resource(dir:'images',file:'menu_manager.png')}"</a></p>
 <p class="header-sub">Menu Manager</p>
 </div>
 

@@ -26,9 +26,9 @@
                         
                             <g:sortableColumn property="description" title="${message(code: 'mainMenu.description.label', default: 'Description')}" />
                         
-                            <g:sortableColumn property="backGroundColor" title="${message(code: 'mainMenu.backGroundColor.label', default: 'Back Ground Color')}" />
+                            <g:sortableColumn property="backGroundPicture" title="${message(code: 'mainMenu.backGroundPicture.label', default: 'Back Ground Picture')}" />
                         
-                            <g:sortableColumn property="backGroundPic" title="${message(code: 'mainMenu.backGroundPic.label', default: 'Back Ground Pic')}" />
+                            <g:sortableColumn property="backGroundPictureType" title="${message(code: 'mainMenu.backGroundPictureType.label', default: 'Back Ground Picture Type')}" />
                         
                         </tr>
                     </thead>
@@ -44,9 +44,9 @@
                         
                             <td>${fieldValue(bean: mainMenuInstance, field: "description")}</td>
                         
-                            <td>${fieldValue(bean: mainMenuInstance, field: "backGroundColor")}</td>
+                            <td>${fieldValue(bean: mainMenuInstance, field: "backGroundPicture")}</td>
                         
-                            <td>${fieldValue(bean: mainMenuInstance, field: "backGroundPic")}</td>
+                            <td>${fieldValue(bean: mainMenuInstance, field: "backGroundPictureType")}</td>
                         
                         </tr>
                     </g:each>
