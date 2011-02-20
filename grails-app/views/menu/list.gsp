@@ -40,8 +40,10 @@
                         
                             <td>${fieldValue(bean: menuInstance, field: "name")}</td>
                         
-                            <td>${fieldValue(bean: menuInstance, field: "backGroundPicture")}</td>
-                        
+                            <td>
+                            <g:link action="show" id="${menuInstance.id}">
+                            <img class="Photo"	src="${createLink(controller:'image' , action:'getThumbNails')}?image_name=menu-${menuInstance?.id}.${menuInstance?.backGroundPictureType}" />
+                        	</g:link></td>
                             <td>${fieldValue(bean: menuInstance, field: "backGroundPictureType")}</td>
                         
                             <td>${fieldValue(bean: menuInstance, field: "mainMenu")}</td>

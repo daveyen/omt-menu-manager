@@ -49,6 +49,7 @@ grails.logging.jul.usebridge = true
 grails.spring.bean.packages = []
 richui.serve.resource.files.remote=true
 base.media.path ='/home/dave/devel/pictures/'
+media.thumb.nail.size=640
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {

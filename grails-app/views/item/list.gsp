@@ -42,8 +42,10 @@
                         
                             <td>${fieldValue(bean: itemInstance, field: "type")}</td>
                         
-                            <td>${fieldValue(bean: itemInstance, field: "backGroundPicture")}</td>
-                        
+							<td>
+							<g:link action="show" id="${itemInstance.id}">
+							<img class="Photo"	src="${createLink(controller:'image' , action:'getThumbNails')}?image_name=item-${itemInstance?.id}.${itemInstance?.backGroundPictureType}" />
+							</g:link></td>                        
                             <td>${fieldValue(bean: itemInstance, field: "backGroundPictureType")}</td>
                         
                             <td>${fieldValue(bean: itemInstance, field: "subMenu")}</td>

@@ -42,8 +42,11 @@
                         
                             <td>${fieldValue(bean: panelInstance, field: "position")}</td>
                         
-                            <td>${fieldValue(bean: panelInstance, field: "backGroundPicture")}</td>
-                        
+							<td>
+							<g:link action="show" id="${panelInstance.id}">
+							
+							<img class="Photo"	src="${createLink(controller:'image' , action:'getThumbNails')}?image_name=panel-${panelInstance?.id}.${panelInstance?.backGroundPictureType}" />
+							</g:link></td>                        
                             <td>${fieldValue(bean: panelInstance, field: "backGroundPictureType")}</td>
                         
                             <td>${fieldValue(bean: panelInstance, field: "layouts")}</td>

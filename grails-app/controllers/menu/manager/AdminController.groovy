@@ -2,8 +2,7 @@ package menu.manager
 
 import java.util.ArrayList
 
-
-import org.codehaus.groovy.grails.web.json.JSONObject;
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 class AdminController {
 
@@ -19,6 +18,46 @@ class AdminController {
 
 	def home = {
 
+	}
+	
+	
+	def getSubMenuItem = {
+		println "-------------------------------- "+params.id
+		Item[] itemInstanceList = Item.findAllBySubMenu(SubMenu.get(params.id))
+		render (view:"_displayItems", model:[itemInstanceList:itemInstanceList])
+	}
+	
+	def getImage = {
+		redirect(controller: 'image' ,action:'getImage', params:['backGroundPicture':params.backGroundPicture])
+		
+	}
+	
+	def displayMenu = {
+		Menu[] menuInstanceList = Menu.findAllByMainMenu(MainMenu.get(params.id))
+		[menuInstanceList:menuInstanceList]
+		
+	}
+	
+	def displayItem = {
+		println "..............................."+params.id
+		Item itemInstance = Item.get(params.id)
+		println "__________item "+itemInstance
+		render (view:"_displayItem", model:[itemInstance:itemInstance])
+		
+	}
+	
+	def displaySubMenu = {
+		SubMenu[] subMenuInstanceList = SubMenu.findAllByMenu(Menu.get(params.id))
+		Item[] itemInstanceList = Item.findAllBySubMenu(subMenuInstanceList[0])
+		[subMenuInstanceList:subMenuInstanceList, itemInstanceList:itemInstanceList]
+	}
+	
+	
+	def displayLayouts = {
+		println"*****************************************************8"
+		Layouts layouts = Layouts.get(params.id)
+		MainMenu[] mainMenuInstance = MainMenu.findAllByLayouts(layouts)
+		[mainMenuInstance:mainMenuInstance[0]]
 	}
 
 	def getSettings = {
@@ -255,6 +294,7 @@ class AdminController {
 	}
 
 	def update = {
+		println "********************************** update"
 		def adminInstance = Admin.get(params.id)
 		if (adminInstance) {
 			if (params.version) {
