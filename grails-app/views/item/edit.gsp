@@ -51,17 +51,7 @@
 				<span class="button"><g:actionSubmit class="save" action="uploadPicture"
 					value="${message(code: 'default.button.change.picture', default: 'change picture')}" /></span></td>
 			</tr>
-			<!-- 
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="backGroundPictureType"><g:message code="item.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: itemInstance, field: 'backGroundPictureType', 'errors')}">
-                                    <g:textField name="backGroundPictureType" value="${itemInstance?.backGroundPictureType}" />
-                                </td>
-                            </tr>
-                        
-                            -->
+
 			<tr class="prop">
 				<td valign="top" class="name"><label for="subMenu"><g:message
 					code="item.subMenu.label" default="Sub Menu" /></label></td>

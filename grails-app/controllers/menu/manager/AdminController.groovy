@@ -19,45 +19,180 @@ class AdminController {
 	def home = {
 
 	}
+
+	def selectItem = {
+		println "Selected "+params.id
+		Item itemInstance = Item.get(params.id)
+		def orderInstance = session.orders
+		ArrayList list = new ArrayList()
+		if(!orderInstance) {
+			orderInstance = new Orders()
+			println "************************"+orderInstance
+			list.add(itemInstance)
+			orderInstance.itemList = list.toArray()
+			session.orders = orderInstance
+		} else {
+			list.addAll(orderInstance.itemList)
+			list.add(itemInstance)
+			orderInstance.itemList = list
+		}
+
+		println("           "+orderInstance)
+		render (view:"_selectedItems", model:[orderInstance:orderInstance])
+	}
+
+	def viewOrder = {
+		def orderInstance = session.orders
+		if(!orderInstance) {
+			println "view order "+orderInstance
+			def clearedOrder = new Orders()
+			clearedOrder.itemList = new Item[0]
+			render (view:"_selectedItems", model:[orderInstance:clearedOrder])
+		} else {
+			println "view order selected"+orderInstance
+
+			render (view:"_selectedItems", model:[orderInstance:orderInstance])
+		}
+
+	}
+
+	def clearOrder = {
+		def orderInstance = session.orders
+		println "clear order  lllll***************"+orderInstance
+
+		if(orderInstance) {
+			session.orders = null
+		}
+		
+		orderInstance = new Orders()
+		orderInstance.itemList = new Item[0]
+		render (view:"_selectedItems", model:[orderInstance:orderInstance])
+
+	}
+
+	def removeItemFromOrder = {
+
+		def orderInstance = session.orders
+		int itemId = params.id
+
+		Item item = Item.get(params.id)
+		Item itemToRemove = null;
+
+		ArrayList list = orderInstance.itemList
+
+		for(int i=0;i < list.size(); i++) {
+			Item itemInstance = list.get(i)
+
+
+			if(itemInstance.id == item.id ){
+				itemToRemove = itemInstance
+				break
+			}
+		}
+
+		list.remove(itemToRemove)
+		orderInstance.itemList = list
+		render (view:"_selectedItems", model:[orderInstance:orderInstance])
+
+
+	}
+
+	def submitOrder = {
+		def orderInstance = session.orders
+
+		if(!orderInstance || orderInstance.itemList ==null || orderInstance.itemList.size() < 1) {
+			println "unsuccessful"
+			render (view:"_failureSubmit")
+		} else {
+			session.orders = null
+			println "successful"
+			/*render (view:"_successfulSubmit")*/
+			render(view:"submitSuccess")
+		}
+	}
 	
-	
+	def getMyBill = {
+		render (view:"myBill")
+	}
+
 	def getSubMenuItem = {
 		println "-------------------------------- "+params.id
 		Item[] itemInstanceList = Item.findAllBySubMenu(SubMenu.get(params.id))
 		render (view:"_displayItems", model:[itemInstanceList:itemInstanceList])
 	}
-	
+
 	def getImage = {
 		redirect(controller: 'image' ,action:'getImage', params:['backGroundPicture':params.backGroundPicture])
-		
+
 	}
-	
+
+	def getBackgroundImage = {
+		redirect(controller: 'image' ,action:'getBackgroundImage', params:['backGroundPicture':params.backGroundPicture])
+	}
+
+
 	def displayMenu = {
-		Menu[] menuInstanceList = Menu.findAllByMainMenu(MainMenu.get(params.id))
-		[menuInstanceList:menuInstanceList]
-		
+		MainMenu mainMenuInstance = MainMenu.get(params.id)
+		Menu[] menuInstanceList = Menu.findAllByMainMenu(mainMenuInstance)
+		def backGroundPicture = mainMenuInstance.backGroundPicture
+
+		if(mainMenuInstance.backGroundColor) {
+
+			backGroundPicture=""
+		}
+		[menuInstanceList:menuInstanceList,backGroundPicture:backGroundPicture,backGroundColor:mainMenuInstance.backGroundColor]
+
 	}
-	
+
 	def displayItem = {
 		println "..............................."+params.id
 		Item itemInstance = Item.get(params.id)
 		println "__________item "+itemInstance
 		render (view:"_displayItem", model:[itemInstance:itemInstance])
+
+	}
+
+	def displaySubMenu = {
+		println "####################"
+		Menu menuInstance = Menu.get(params.id)
+		SubMenu[] subMenuInstanceList = SubMenu.findAllByMenu(menuInstance)
+		Item[] itemInstanceList = Item.findAllBySubMenu(subMenuInstanceList[0])
+
+		def backGroundPicture = menuInstance.backGroundPicture
+		if(menuInstance.backGroundColor) {
+			backGroundPicture =""
+		}
+
+		[subMenuInstanceList:subMenuInstanceList, itemInstanceList:itemInstanceList, backGroundPicture:backGroundPicture,backGroundColor:menuInstance.backGroundColor]
+	}
+	
+	def displaySubMenuPicture = {
+		
+		SubMenu subMenuInstance = SubMenu.get(params.id)
+		println "**********################********"+subMenuInstance
+		
+		render (view:"_displaySubMenuPicture", model:[subMenuInstance:subMenuInstance])
 		
 	}
-	
-	def displaySubMenu = {
-		SubMenu[] subMenuInstanceList = SubMenu.findAllByMenu(Menu.get(params.id))
-		Item[] itemInstanceList = Item.findAllBySubMenu(subMenuInstanceList[0])
-		[subMenuInstanceList:subMenuInstanceList, itemInstanceList:itemInstanceList]
-	}
-	
-	
+
+
 	def displayLayouts = {
-		println"*****************************************************8"
 		Layouts layouts = Layouts.get(params.id)
 		MainMenu[] mainMenuInstance = MainMenu.findAllByLayouts(layouts)
 		[mainMenuInstance:mainMenuInstance[0]]
+	}
+
+	def displayMainMenu = {
+		Layouts layouts = Layouts.get(params.id)
+		session.mainMenuId = params.id
+		MainMenu[] mainMenuInstance = MainMenu.findAllByLayouts(layouts)
+		[mainMenuInstance:mainMenuInstance[0]]
+	}
+	
+	def exit = {
+		Layouts layouts = Layouts.get(session.mainMenuId)
+		MainMenu[] mainMenuInstance = MainMenu.findAllByLayouts(layouts)
+		render (view:"displayMainMenu",model:[mainMenuInstance:mainMenuInstance[0]])
 	}
 
 	def getSettings = {

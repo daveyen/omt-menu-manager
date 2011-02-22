@@ -75,7 +75,7 @@
 			<tr>
 				<g:hiddenField name="id" value="${layoutsInstance?.id}" />			
 				<br/><br/><br/>				
-				<td valign="center"><span class="button"> <a href="${createLink(action:'displayLayouts', controller:'admin')}?id=${layoutsInstance?.id}" target="_blank">Preview</a>
+				<td valign="center"><span class="button"> <a href="${createLink(action:'displayMainMenu', controller:'admin')}?id=${layoutsInstance?.id}" target="_blank">Preview</a>
 				 </span> </td>
 			</tr>
 		</g:form>

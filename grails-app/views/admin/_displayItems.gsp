@@ -1,16 +1,15 @@
 <g:javascript library="prototype" />
 
 
-<div id="control_panel">
-		</div>
 <div id="image_">
 
 
 <richui:carousel direction="horizontal" carouselStyle="height:100px;" itemStyle="height:100px">
 	<g:each in="${itemInstanceList}" status="i" var="itemInstance">
 			<richui:carouselItem>
-			<p><td><h2><font color="Orange" face="Times"> ${fieldValue(bean: itemInstance, field: "name")}</font></h2></td></p>
-			
+			<p><td><h2><font color="${itemInstance?.fontColor}" face="${itemInstance?.font}"> ${fieldValue(bean: itemInstance, field: "name")}</font></h2></td></p>
+
+		<span/>			
 		<td><g:formRemote name="bottom_form" on404="alert('not found!')"
 			url="[action:'displayItem']" update="center_panel">
 

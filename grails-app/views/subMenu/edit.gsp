@@ -49,15 +49,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="backGroundPictureType"><g:message code="subMenu.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'backGroundPictureType', 'errors')}">
-                                    <g:textField name="backGroundPictureType" value="${subMenuInstance?.backGroundPictureType}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                   <label for="menu"><g:message code="subMenu.menu.label" default="Menu" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: subMenuInstance, field: 'menu', 'errors')}">

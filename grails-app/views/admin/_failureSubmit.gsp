@@ -1,0 +1,1 @@
+<h2> <b><font color="Red" face="Times">Order submit unsuccessful. Please try again or please get assistance.</font></b></h2> 

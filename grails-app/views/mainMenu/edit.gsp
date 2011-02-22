@@ -62,14 +62,6 @@
 							value="${message(code: 'default.button.change.picture', default: 'change picture')}" /></span></td>
                             </tr>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="backGroundPictureType"><g:message code="mainMenu.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: mainMenuInstance, field: 'backGroundPictureType', 'errors')}">
-                                    <g:select name="backGroundPictureType" from="${mainMenuInstance.constraints.backGroundPictureType.inList}" value="${mainMenuInstance?.backGroundPictureType}" valueMessagePrefix="mainMenu.backGroundPictureType" noSelection="['': '']" />
-                                </td>
-                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">

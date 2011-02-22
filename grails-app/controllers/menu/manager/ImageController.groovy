@@ -40,6 +40,7 @@ class ImageController {
 		}
 		return instance
 	}
+	
 
 	def savePicture = {
 		def type = params.type
@@ -60,8 +61,18 @@ class ImageController {
 
 
 		def picName = params.superId+'-'+instance.id+'.'+pictureType
+		def sizeOfPicture = 1024;
+		def imageHeight = 375
+		def imageWidth = 426
+		
+		/*saveImage(picturePath+picName,f.getBytes(),sizeOfPicture)*/
 
-		saveImage(picturePath+picName,f.getBytes())
+		if(type == 'mainMenu') {
+			savePictureToFileSystem(picturePath,picName,f.getBytes())
+		} else {
+			saveImage(picturePath+picName,f.getBytes(),imageWidth,imageHeight)
+		}
+		
 		
 		def thumbNailPicture =this.getServletContext().getRealPath('/images/thumbnails/'+type+"-"+instance.id+'.'+pictureType)
 
@@ -85,10 +96,23 @@ class ImageController {
 		bos.flush()
 		bos.close()
 	}
-	def saveImage(String picturePath,byte[] picFile) {
+/*
+	def saveImage(String picturePath,byte[] picFile,sizeOfPicture) {
 		def imageTool = new ImageTool()
 		imageTool.load(picFile)
-		imageTool.thumbnail( 1024 )
+		
+		imageTool.thumbnail(sizeOfPicture)
+		
+		imageTool.writeResult(picturePath, "JPEG")
+	}
+*/
+	def saveImage(String picturePath,byte[] picFile,maxWidth,maxHeight) {
+		def imageTool = new ImageTool()
+		imageTool.load(picFile)
+		println "width "+maxWidth
+		println "height "+maxHeight
+		
+		imageTool.thumbnailSpecial(maxWidth, maxHeight, 1, 1)
 		
 		imageTool.writeResult(picturePath, "JPEG")
 	}
@@ -143,10 +167,23 @@ class ImageController {
 		displayImages(thumbNailName)
 	}
 
+	
+	
 	def getImage = {
 		def relativePath = trimToEmpty(request.getPathInfo());
 
 		def backGroundPicture = params.backGroundPicture
+		
+		displayImages(backGroundPicture)
+	}
+
+	def getBackgroundImage = {
+		def relativePath = trimToEmpty(request.getPathInfo());
+
+		def backGroundPicture = params.backGroundPicture
+		if(!backGroundPicture) {
+			backGroundPicture = this.getServletContext().getRealPath('/images/placeholder.gif')
+		}
 		
 		displayImages(backGroundPicture)
 	}

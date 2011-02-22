@@ -5,7 +5,7 @@
 		<title><g:message code="Preview" /></title>
 	</head>
 	<body>
-		<g:form>
+		<g:form action="displayMenu">
 			<div id="panel_container">
 				<div id="left_panel"> </div>
 		

@@ -58,14 +58,6 @@
 							value="${message(code: 'default.button.change.picture', default: 'change picture')}" /></span></td>
                             </tr>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="backGroundPictureType"><g:message code="panel.backGroundPictureType.label" default="Back Ground Picture Type" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: panelInstance, field: 'backGroundPictureType', 'errors')}">
-                                    <g:textField name="backGroundPictureType" value="${panelInstance?.backGroundPictureType}" />
-                                </td>
-                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
