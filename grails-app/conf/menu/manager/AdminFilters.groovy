@@ -7,12 +7,16 @@ class AdminFilters {
 
 			before = {
 				if(controllerName != null && actionName != null) {
-
-					if(!session.admin && actionName != 'login' && actionName != 'authenticate') {
-						redirect(controller:'admin',action:'login')
+					
+					if(params.application != 'client' && !session.user && !session.admin && actionName != 'login' && actionName != 'authenticate') {
+						
+						if(controllerName == 'user') {
+							redirect(controller:'user',action:'login')
+						} else {
+							redirect(controller:'admin',action:'login')
+						}
 					}
 				}
-
 
 				after = {
 

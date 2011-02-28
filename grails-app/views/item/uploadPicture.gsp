@@ -12,7 +12,7 @@
 <g:form controller="image" method="post" action="savePicture"
 	enctype="multipart/form-data">
 	<g:hiddenField name="id" value="${itemInstance?.id}" />
-		<g:hiddenField name="superId" value="itemInstance?.subMenu.id" />
+		<g:hiddenField name="superId" value="${itemInstance?.subMenu.id}" />
 		<g:hiddenField name="type" value="item" />
 	
 	<input type="file" name="file" />

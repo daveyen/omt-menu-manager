@@ -21,13 +21,11 @@ class AdminController {
 	}
 
 	def selectItem = {
-		println "Selected "+params.id
 		Item itemInstance = Item.get(params.id)
 		def orderInstance = session.orders
 		ArrayList list = new ArrayList()
 		if(!orderInstance) {
 			orderInstance = new Orders()
-			println "************************"+orderInstance
 			list.add(itemInstance)
 			orderInstance.itemList = list.toArray()
 			session.orders = orderInstance
@@ -36,8 +34,6 @@ class AdminController {
 			list.add(itemInstance)
 			orderInstance.itemList = list
 		}
-
-		println("           "+orderInstance)
 		render (view:"_selectedItems", model:[orderInstance:orderInstance])
 	}
 
@@ -116,20 +112,17 @@ class AdminController {
 	}
 
 	def getSubMenuItem = {
-		println "-------------------------------- "+params.id
 		Item[] itemInstanceList = Item.findAllBySubMenu(SubMenu.get(params.id))
 		render (view:"_displayItems", model:[itemInstanceList:itemInstanceList])
 	}
 
 	def getImage = {
 		redirect(controller: 'image' ,action:'getImage', params:['backGroundPicture':params.backGroundPicture])
-
 	}
 
 	def getBackgroundImage = {
 		redirect(controller: 'image' ,action:'getBackgroundImage', params:['backGroundPicture':params.backGroundPicture])
 	}
-
 
 	def displayMenu = {
 		MainMenu mainMenuInstance = MainMenu.get(params.id)
@@ -153,7 +146,6 @@ class AdminController {
 	}
 
 	def displaySubMenu = {
-		println "####################"
 		Menu menuInstance = Menu.get(params.id)
 		SubMenu[] subMenuInstanceList = SubMenu.findAllByMenu(menuInstance)
 		Item[] itemInstanceList = Item.findAllBySubMenu(subMenuInstanceList[0])
@@ -169,8 +161,6 @@ class AdminController {
 	def displaySubMenuPicture = {
 		
 		SubMenu subMenuInstance = SubMenu.get(params.id)
-		println "**********################********"+subMenuInstance
-		
 		render (view:"_displaySubMenuPicture", model:[subMenuInstance:subMenuInstance])
 		
 	}
@@ -188,7 +178,7 @@ class AdminController {
 		MainMenu[] mainMenuInstance = MainMenu.findAllByLayouts(layouts)
 		[mainMenuInstance:mainMenuInstance[0]]
 	}
-	
+
 	def exit = {
 		Layouts layouts = Layouts.get(session.mainMenuId)
 		MainMenu[] mainMenuInstance = MainMenu.findAllByLayouts(layouts)

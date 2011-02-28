@@ -95,7 +95,7 @@ function displaySubMenu(id) {
 		value="${message(code: 'default.button.submit.order', default: 'Submit Order')}" onclick="return submitOrder()" /></button>
 	
 		
-	</g:>
+	</g:form>
 			
 		
 </div>

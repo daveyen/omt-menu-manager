@@ -1,10 +1,19 @@
 package menu.manager
 
+import java.util.ArrayList
+
+import org.codehaus.groovy.grails.web.json.JSONObject
+
 class UserController {
 
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	def userService
 
-	def login = {}
+	def login = {
+
+
+
+	}
 	def logout = {
 		flash.message = "Goodbye ${session.user.login}"
 		session.user = null
@@ -12,13 +21,29 @@ class UserController {
 	}
 
 	def authenticate = {
-		def user =
-				User.findByLoginAndPassword(params.login,
-				params.password)
+
+		println "params "+params
+		println "login "+params.login
+		println "password "+params.password
+		def user = User.findByLoginAndPassword(params.login, params.password)
+		println "user +++++++++ "+user
 		if(user){
+
 			session.user = user
 			flash.message = "Hello ${user.login}!"
-			redirect(controller:"user", action:"list")
+			Admin admin = user.admin
+			println "Admin ____________________ "+admin
+			Layouts[] layouts = Layouts.findAllByAdmin(admin)
+			println "layout id "+layouts[0].id
+			
+			println "application "+params.application
+			if(params.application) {
+				println "hahahahaah"
+				redirect(action:"getSettings")
+			} else {
+
+				redirect(controller:"admin", action:"displayMainMenu" ,params:['id':layouts[0].id])
+			}
 		}else{
 			flash.message =
 					"Sorry, ${params.login}. Please try again."
@@ -26,10 +51,48 @@ class UserController {
 		}
 	}
 
+	def getSettings = {
+		
+		def user = userService.authenticate(params.login,params.password)
+		println "user "+user
+		if(user) {
+			def responseObject = userService.getSettings(user)
+		
+			println "response  "+responseObject.encodeAsJSON()
+			render userService.getSettings(user).encodeAsJSON()
+		} else {
+			render "Invalid login"
+		}
+	}
+
+
+	def getMainMenuSettings = {
+		def mainMenu = userService.getMainMenuSettings()
+	}
+
+	def getMenuSettings = {
+
+	}
+
+	def getSubMenuSettings = {
+
+	}
+
+	def getItemSettings = {
+
+	}
+
+	def getPicture  = {
+
+	}
+
+	def getThumbNails = {
+
+	}
+
 	def index = {
 		redirect(action: "list", params: params)
 	}
-
 
 	def list = {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
